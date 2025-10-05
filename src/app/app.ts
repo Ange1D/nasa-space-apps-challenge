@@ -4,7 +4,7 @@ import { ImageViewerComponent } from "./image-viewer/image-viewer";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ImageViewerComponent],
+  imports: [ImageViewerComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -1,1 +1,13 @@
-<p>image-labeling works!</p>
+<div class="labeling-controls">
+  <input [(ngModel)]="currentLabelText" placeholder="Texto de la etiqueta" />
+  <input type="color" [(ngModel)]="currentLabelColor" />
+  <button (click)="toggleLabels()">
+    {{ labelsVisible ? 'Ocultar Etiquetas' : 'Mostrar Etiquetas' }}
+  </button>
+</div>
+<div class="labels-list">
+  <div *ngFor="let label of labels" class="label-item">
+    {{ label.text }} ({{ label.x | number:'1.2-2' }}, {{ label.y | number:'1.2-2' }})
+    <button (click)="removeLabel(label.id)">X</button>
+  </div>
+</div>
