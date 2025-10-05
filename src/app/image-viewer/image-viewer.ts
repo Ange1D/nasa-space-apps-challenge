@@ -7,7 +7,7 @@ import OpenSeadragon from 'openseadragon';
   templateUrl: './image-viewer.html',
   styleUrl: './image-viewer.css'
 })
-export class ImageViewer implements AfterViewInit {
+export class ImageViewerComponent implements AfterViewInit {
   constructor(private el: ElementRef) {}
 
   ngAfterViewInit() {
@@ -15,8 +15,11 @@ export class ImageViewer implements AfterViewInit {
       OpenSeadragon({
         id: "openseadragon-viewer",
         prefixUrl: "https://openseadragon.github.io/openseadragon/images/",
-        tileSources: 'https://openseadragon.github.io/example-images/highsmith/highsmith.dzi',
-      });
+        tileSources: 'assets/zoom_images/Andromeda-galaxy.dzi',
+        maxZoomLevel: 100.0,
+        minZoomLevel: 0.5,
+        defaultZoomLevel: 0.8
+      },);
     }, 10);
   }
 }
