@@ -1,2 +1,4 @@
 <div id="openseadragon-viewer" style="width: 100%; height: 600px; position: relative;"></div>
-<app-image-labeling [viewer]="viewer"></app-image-labeling>
+@if (isLabeling) {
+    <app-image-labeling [viewer]="viewer"></app-image-labeling>
+}

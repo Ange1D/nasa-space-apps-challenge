@@ -1,1 +1,42 @@
-<app-image-viewer></app-image-viewer>
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav 
+    #sidenav 
+    mode="side"   [opened]="true" class="pro-sidenav">
+
+    <div class="sidenav-header">
+      <mat-icon class="logo-icon">rocket_launch</mat-icon>
+      <span class="app-name">Embiggen Your Eyes!</span>
+    </div>
+    
+    <mat-divider></mat-divider>
+    
+
+    <mat-nav-list>
+    @for (item of menuItems; track item.name) {
+      <mat-list-item 
+        [routerLink]="item.route"
+        routerLinkActive="active-link">
+        
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.name }}</span>
+      </mat-list-item>
+    }
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    
+    <button mat-icon-button (click)="sidenav.toggle()" class="toggle-button">
+      <mat-icon>
+        {{ sidenav.opened ? 'chevron_left' : 'chevron_right' }} 
+      </mat-icon>
+    </button>
+    
+    <div class="app-page-content">
+      <router-outlet></router-outlet> 
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

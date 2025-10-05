@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angular/core';
 import OpenSeadragon from 'openseadragon';
 import { ImageLabelingComponent } from "../image-labeling/image-labeling";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-image-viewer',
@@ -10,10 +11,16 @@ import { ImageLabelingComponent } from "../image-labeling/image-labeling";
 })
 export class ImageViewerComponent implements AfterViewInit {
 
+  private router = inject(Router);
+
   @ViewChild('viewer') viewerElement!: ElementRef;
   viewer: OpenSeadragon.Viewer | null = null;
 
   constructor(private el: ElementRef) {}
+
+  get isLabeling(): boolean {
+    return this.router.url.includes('labeling');
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
