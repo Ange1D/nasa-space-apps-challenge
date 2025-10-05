@@ -1,0 +1,34 @@
+<div class="container-404">
+  <mat-card class="error-card">
+    
+    <div class="icon-wrapper">
+        <mat-icon class="error-icon" aria-hidden="false" aria-label="Página no encontrada">
+            sentiment_dissatisfied
+        </mat-icon>
+    </div>
+    
+    <mat-card-header>
+      <mat-card-title class="error-code">404</mat-card-title>
+      <mat-card-subtitle class="error-message">
+        ¡Vaya! Parece que esta página se ha perdido en el ciberespacio.
+      </mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <p>
+        La dirección URL que has introducido no existe.
+      </p>
+    </mat-card-content>
+    
+    <mat-card-actions>
+      <button 
+        mat-flat-button 
+        color="primary" 
+        (click)="goToHome()">
+        <mat-icon>home</mat-icon>
+        Volver al Inicio
+      </button>
+    </mat-card-actions>
+    
+  </mat-card>
+</div>
