@@ -1,7 +1,14 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // <-- Importado
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import OpenSeadragon from 'openseadragon';
-import { CommonModule  } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { DecimalPipe } from '@angular/common';
+
 
 interface Label {
   id: number;
@@ -13,7 +20,7 @@ interface Label {
 
 @Component({
   selector: 'app-image-labeling',
-  imports: [FormsModule, CommonModule ],
+  imports: [FormsModule, MatCardModule, MatSliderModule, MatButtonModule, MatInputModule, MatListModule, MatIconModule, DecimalPipe ],
   templateUrl: './image-labeling.html',
   styleUrl: './image-labeling.css'
 })
@@ -49,6 +56,7 @@ export class ImageLabelingComponent{
   labels: Label[] = [];
   currentLabelText: string = '';
   currentLabelColor: string = '#1eff00';
+  markerSize: number = 100;
 
    private labelOverlays: { [key: number]: HTMLElement } = {};
 
@@ -61,7 +69,7 @@ export class ImageLabelingComponent{
 
             if (event.quick) {
                 if (!this.currentLabelText.trim()) {
-                    alert('Por favor, escribe el nombre de la etiqueta antes de agregarla.');
+                    alert('Label name is required to add a marker.');
                     return;
                 }
                 
@@ -112,8 +120,8 @@ export class ImageLabelingComponent{
       const markerEl = document.createElement('div');
       markerEl.className = 'label-marker'; 
       markerEl.style.backgroundColor = label.color || '#1eff00';
-      markerEl.style.width = '30px'; 
-      markerEl.style.height = '30px';
+      markerEl.style.width = this.markerSize +'px'; 
+      markerEl.style.height = this.markerSize + 'px';
       markerEl.style.borderRadius = '50%';
       markerEl.style.opacity = '50%';
 
@@ -162,7 +170,7 @@ export class ImageLabelingComponent{
     });
     this.labelOverlays = {};
   }
-}
+  }
 
 
 }

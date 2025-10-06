@@ -1,13 +1,62 @@
-<div class="labeling-controls">
-  <input [(ngModel)]="currentLabelText" placeholder="Texto de la etiqueta" />
-  <input type="color" [(ngModel)]="currentLabelColor" />
-  <button (click)="toggleLabels()">
-    {{ labelsVisible ? 'Ocultar Etiquetas' : 'Mostrar Etiquetas' }}
-  </button>
-</div>
-<div class="labels-list">
-  <div *ngFor="let label of labels" class="label-item">
-    {{ label.text }} ({{ label.x | number:'1.2-2' }}, {{ label.y | number:'1.2-2' }})
-    <button (click)="removeLabel(label.id)">X</button>
-  </div>
-</div>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Label and Marker Control</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div class="labeling-controls">
+      <mat-form-field appearance="outline" class="control-input">
+        <mat-label>Label Text</mat-label>
+        <input matInput [(ngModel)]="currentLabelText" />
+      </mat-form-field>
+
+      <div class="color-picker-container">
+        <label>Color:</label>
+        <input type="color" [(ngModel)]="currentLabelColor" class="color-input" />
+      </div>
+
+      <div class="slider-container">
+        <label>Marker Size ({{ markerSize }}px)</label>
+        <mat-slider min="1" max="100" step="1" showTickMarks discrete>
+            <input matSliderThumb [(ngModel)]="markerSize" (change)="drawLabels()">
+        </mat-slider>
+      </div>
+      
+    
+
+    <button mat-raised-button color="primary" (click)="toggleLabels()">
+      {{ labelsVisible ? 'Hide Labels' : 'Show Labels' }}
+    </button>
+
+    </div>
+
+    <mat-divider></mat-divider>
+    
+  </mat-card-content>
+</mat-card>
+
+@if (labelsVisible) {
+  <div class="labels-list">
+      <h3>Active Labels</h3>
+      
+      <mat-list>
+        @for (label of labels; track label.id) {
+          <mat-list-item class="label-item">
+            <span matListItemTitle>
+              {{ label.text }}
+            </span>
+            <span matListItemLine class="label-coordinates">
+              ({{ label.x | number:'1.2-2' }}, {{ label.y | number:'1.2-2' }})
+            </span>
+            <button mat-icon-button (click)="removeLabel(label.id)" color="warn" matListItemMeta>
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        } @empty {
+          <p class="empty-state">No labels added.</p>
+        }
+      </mat-list>
+
+    </div>
+}
