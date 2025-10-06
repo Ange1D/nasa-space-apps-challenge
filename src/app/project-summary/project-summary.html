@@ -42,4 +42,20 @@
     </mat-card-content>
   </mat-card>
 
+  <mat-card class="summary-card">
+    <mat-card-header>
+      <mat-card-title>Resources</mat-card-title>
+      <mat-card-subtitle>Images</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ul>
+        @for (resource of resources.images; track resource.name){
+        <li>Name: {{ resource.name }} </li>
+        <li>Size: {{ resource.size }} </li>
+        <li><a [href]="resource.imageUrl" target="_blank">URL</a></li>
+        }
+      </ul>
+    </mat-card-content>
+  </mat-card>
+
 </div>

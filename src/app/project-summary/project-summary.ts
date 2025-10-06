@@ -30,4 +30,9 @@ export class ProjectSummaryComponent {
     stack: [{name:'Angular'}, {name:'Angular Material'}]
   };
 
+  resources ={
+    images: [{name:'Andromeda galaxy', size:'203MB', imageUrl:'https://assets.science.nasa.gov/content/dam/science/missions/hubble/galaxies/andromeda/Hubble_M31Mosaic_2025_42208x9870_STScI-01JGY8MZB6RAYKZ1V4CHGN37Q6.jpg'},
+       {name:'Carina Nebula', size:'219MB', imageUrl:'https://cdn.eso.org/images/original/eso1208a.tif'}]
+  }
+
 }
