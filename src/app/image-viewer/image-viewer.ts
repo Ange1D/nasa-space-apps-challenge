@@ -2,14 +2,25 @@ import { AfterViewInit, Component, ElementRef, ViewChild, inject } from '@angula
 import OpenSeadragon from 'openseadragon';
 import { ImageLabelingComponent } from "../image-labeling/image-labeling";
 import { Router } from '@angular/router';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-image-viewer',
-  imports: [ImageLabelingComponent],
+  imports: [ImageLabelingComponent, MatSelectModule, MatFormFieldModule, FormsModule, MatInputModule],
   templateUrl: './image-viewer.html',
   styleUrl: './image-viewer.css'
 })
 export class ImageViewerComponent implements AfterViewInit {
+
+  imageFiles: string[] = [
+    'Andromeda-galaxy.dzi',
+    'carina-nebula.dzi',
+  ];
+
+  selectedImage: string = this.imageFiles[0];
 
   private router = inject(Router);
 
@@ -24,17 +35,32 @@ export class ImageViewerComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
+      this.initializeOpenSeadragon(this.selectedImage);
+    }, 10);
+  }
+
+  initializeOpenSeadragon(filename: string): void {
+    const tileSourcePath = `assets/zoom_images/${filename}`;
+
+    if (!this.viewer) {
       this.viewer = OpenSeadragon({
         id: "openseadragon-viewer",
         prefixUrl: "https://openseadragon.github.io/openseadragon/images/",
         gestureSettingsMouse: {
           clickToZoom: false,
         },
-        tileSources: 'assets/zoom_images/Andromeda-galaxy.dzi',
+        tileSources: tileSourcePath,
         maxZoomLevel: 100.0,
         minZoomLevel: 0.5,
         defaultZoomLevel: 0.8
-      },);
-    }, 10);
+      });
+    } else {
+      this.viewer.open(tileSourcePath);
+    }
+  }
+
+  onImageChange(newImageFilename: string): void {
+    this.selectedImage = newImageFilename;
+    this.initializeOpenSeadragon(newImageFilename);
   }
 }

@@ -1,3 +1,12 @@
+  <mat-form-field>
+    <mat-label>Select Image</mat-label>
+    <mat-select [(ngModel)]="selectedImage" (selectionChange)="onImageChange($event.value)">
+      @for (image of imageFiles; track image) {
+        <mat-option [value]="image">{{image}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
 <div id="openseadragon-viewer" style="width: 100%; height: 600px; position: relative;"></div>
 @if (isLabeling) {
     <app-image-labeling [viewer]="viewer"></app-image-labeling>
