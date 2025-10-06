@@ -1,0 +1,45 @@
+<div class="cards-container">
+
+  <mat-card class="summary-card">
+    <mat-card-header>
+      <mat-card-title>Hackathon: {{ hackathonInfo.name }}</mat-card-title>
+      <mat-card-subtitle>Information</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>Date:</strong> {{ hackathonInfo.date }}</p>
+      <p><strong>Local Event:</strong> {{ hackathonInfo.event }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="summary-card developer-card">
+    <mat-card-header>
+      <div mat-card-avatar class="developer-avatar" [style.background-image]="'url(' + myInfo.imgUrl + ')'"></div>
+      <mat-card-title>{{ myInfo.name }}</mat-card-title>
+      <mat-card-subtitle>Web developer</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <a [href]="myInfo.githubUrl" target="_blank">
+          <mat-icon>code</mat-icon>GitHub: <strong>{{ myInfo.githubUser }}</strong>
+        </a>
+      </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="summary-card">
+    <mat-card-header>
+      <mat-card-title>Challenge:  {{ challengeInfo.name }}</mat-card-title>
+      <mat-card-subtitle>Details</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ challengeInfo.description }}</p>
+      <p><strong>Stack:</strong></p>
+      <ul>
+        @for (tech of challengeInfo.stack; track tech.name){
+        <li>{{ tech.name }}</li>
+        }
+      </ul>
+    </mat-card-content>
+  </mat-card>
+
+</div>

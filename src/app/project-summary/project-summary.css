@@ -1,0 +1,31 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.summary-card {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+.developer-avatar {
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.developer-card p a {
+    text-decoration: none;
+    color: var(--mat-button-text-label-text-color, #005cbb);
+    display: flex;
+    align-items: center;
+}
+
+.developer-card mat-icon {
+    margin-right: 5px;
+}

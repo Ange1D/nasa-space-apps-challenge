@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar'; // La barra superior
-import { MatSidenavModule } from '@angular/material/sidenav'; // El menú deslizante
-import { MatIconModule } from '@angular/material/icon'; // Íconos
-import { MatButtonModule } from '@angular/material/button'; // Botones
-import { MatListModule } from '@angular/material/list'; // Para los ítems del menú
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 
 @Component({
