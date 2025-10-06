@@ -6,10 +6,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-image-viewer',
-  imports: [ImageLabelingComponent, MatSelectModule, MatFormFieldModule, FormsModule, MatInputModule],
+  imports: [ImageLabelingComponent, MatSelectModule, MatFormFieldModule, FormsModule, MatInputModule, MatExpansionModule],
   templateUrl: './image-viewer.html',
   styleUrl: './image-viewer.css'
 })

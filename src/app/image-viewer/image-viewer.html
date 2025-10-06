@@ -11,3 +11,55 @@
 @if (isLabeling) {
     <app-image-labeling [viewer]="viewer"></app-image-labeling>
 }
+@else {
+<mat-accordion class="tutorial-panel-container">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Quick Guide: How to Add a New Image to the Viewer?
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ol>
+            <li>
+                <strong>Step 1: Prerequisites (Install VIPS)</strong>
+                <p>You must have the <strong>VIPS</strong> image processing library installed. If you don't have it, you can download it from <a href="https://www.libvips.org/install.html" target="_blank">here</a>.</p>
+            </li>
+            <li>
+                <strong>Step 2: Convert the Image to DZI Format (Command)</strong>
+                <p>Use the following command in your terminal to generate the Deep Zoom Image (`.dzi`) file and its tile folder:</p>
+                <code>vips dzsave input-image output-name --layout dz </code>
+                <p>(Example: <code>vips dzsave high-res-photo.jpg Luna --layout dz</code> 
+                    <br>will create <code>Luna.dzi</code> and the <code>Luna_files</code> folder.)</p>
+            </li>
+            <li>
+                <strong>Step 3: Place the DZI Files in Assets</strong>
+                <p>Copy the generated <strong>`.dzi` file</strong> and the <strong>tiles folder</strong> (e.g., `Luna_files`) into your Angular assets directory:</p>
+                <code>src/assets/zoom_images/</code>
+                
+                </li>
+            <li>
+                <strong>Step 4: Update the Image List in Angular</strong>
+                <p>Since the frontend can't read files, you must manually edit the <strong>`image-viewer.component.ts`</strong> file. Add the new `.dzi` filename (e.g., `'Luna.dzi'`) to the <strong>`imageFiles`</strong> array.</p>
+                <pre><code>imageFiles: string[] = [
+    // ...
+    'Luna.dzi' // <-- Add your new file here
+];</code></pre>
+            </li>
+            <li>
+                <strong>Step 5: Run the Application (Command)</strong>
+                <p>Save your changes and restart the development server:</p>
+                <pre><code>ng serve</code></pre>
+                
+                </li>
+            <li>
+                <strong>Step 6: Select the New Image in the Viewer</strong>
+                <p>Use the selector above to choose your new image. Selecting it will automatically call OpenSeadragon's <code>viewer.open()</code> method to load the new Deep Zoom source:</p>
+                <pre><code>viewer.open('assets/zoom_images/Luna.dzi')</code></pre>
+                
+                </li>
+        </ol>
+        
+    </mat-expansion-panel>
+</mat-accordion>
+}
